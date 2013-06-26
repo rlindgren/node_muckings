@@ -4,7 +4,7 @@ var url = require('url');
 function start( route, handle ) {
 	function onRequest( req, res ) {
 		var pathname = url.parse(req.url).pathname;
-		if ( !pathname.match(/^\/favicon/) ) {				// dont process favicon requests
+		if ( pathname.search(/^\/favicon/) === -1 ) {				// dont process favicon requests
 			console.log('Request for ' + pathname + ' received');
 			route(handle, pathname, res, req);
 		}

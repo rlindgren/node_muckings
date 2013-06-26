@@ -27,13 +27,7 @@ function upload( response, request ) {
 	console.log("about to parse");
 	form.parse(request, function( error, fields, files ) {
 		console.log("parsing complete");
-		console.log(fields); console.log(error); console.log(files);
-		fs.rename("./tmp/" + fields.upload, "./tmp/test.png", function( err ) {
-			if (err) {
-				fs.unlink("./tmp/test.png");
-				fs.rename(files.upload.path, "./tmp/test.png");
-			}
-		});
+		console.log(fields, error, files);
 		response.writeHead(200, {"Content-Type": "text/html"});
 		response.write("received image:</br>");
 		response.write("<img src='/show' />")
