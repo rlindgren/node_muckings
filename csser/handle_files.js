@@ -1,13 +1,7 @@
 var fs = require('fs'),
 		extname = require('path').extname,
 
-		dir_contents = [],
-		files = [],
-
-		red   = '\033[31m',
-		blue  = '\033[34m',
-		reset = '\033[0m';
-// See more at: http://roguejs.com/2011-11-30/console-colors-in-node-js/#sthash.PpqdWqui.dpuf
+		dir_contents = [];
 
 function verify_path (path) {
 	return fs.existsSync(path);
