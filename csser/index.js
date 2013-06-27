@@ -3,10 +3,10 @@
 // whose name is declared as the second parameter (both strings).
 
 var cla = require('./handle_cla'),
-		hf = require('./handle_files'),
-		re = require('./re_patterns'),
+	hf = require('./handle_files'),
+	re = require('./re_patterns'),
 
-		args = process.argv;
+	args = process.argv;
 
 cla.handle_cla(args);		// handle command line args
 

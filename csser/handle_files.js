@@ -1,7 +1,7 @@
 var fs = require('fs'),
-		extname = require('path').extname,
+	extname = require('path').extname,
 
-		dir_contents = [];
+	dir_contents = [];
 
 function verify_path (path) {
 	return fs.existsSync(path);
