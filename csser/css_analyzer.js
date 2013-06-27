@@ -7,7 +7,7 @@ var util = require('util');
 var child_process = require('child_process');
 var path = require('path');
 var cla = require('./cla');
-var get_files = require('./get_files');
+var gf = require('./get_files');
 
 var dir_contents;
 var css_files = [];
@@ -15,11 +15,11 @@ var css_files = [];
 var re_patterns = {};
 re_patterns.selectors = /^((.*)\{.*\})+/;  // could/should build a separate module
 
-var args = process.argv;
-cla.handle_cla(args);				// handle command line args
+var args = process.argv;  // handle command line args
+cla.handle_cla(args);
 
-console.log(args, get_files.files);
+gf.get_files(args.path);
 
-get_files.get_files(args.path);		// args object contains necessary data to verify path
+console.log(args.path);
 
-console.log(get_files.files);
+console.log(args, gf.files);		// testing

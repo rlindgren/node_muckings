@@ -1,31 +1,30 @@
-var fs = require('fs');
-var extname = require('path').extname;
+var fs = require('fs'),
+		extname = require('path').extname,
 
-var files = [];
+		dir_contents = [],
+		files = [],
+
+		red   = '\033[31m',
+		blue  = '\033[34m',
+		reset = '\033[0m';
+// See more at: http://roguejs.com/2011-11-30/console-colors-in-node-js/#sthash.PpqdWqui.dpuf
 
 function verify_path (path) {
 	return fs.existsSync(path);
 }
 
-function get_files (path) {
-	var dir_contents;
-	if (verify_path(path)) {
-		if (fs.statSync(path).isDirectory()) {
-			dir_contents = fs.readdirSync(path);
-			dir_contents.forEach(function (file) {
-				if (extname(file).search(/(.css|.scss|.sass)/) >= 0) {
-					files.push(file);
-				} else {
-					get_files(file);
-				}
-			});
-		} else { 
-			files.push(path) 
+function read_dir (path) {
+	fs.readdirSync(path).forEach(function (file) {
+		if (file.search(/^\./) === 0) { console.log('skipped ' + file) }
+		else if (! fs.statSync(path + file).isDirectory()) {
+			dir_contents.push(file);
+			console.log(red + file + reset + " added to dir_contents");
+		} else {
+			console.log('reading from internal directory.')
+			read_dir(path + file + '/');
 		}
-	} else {
-		throw new Error("Invalid path.");
-	}
+	});
 }
 
-exports.get_files = get_files;
-exports.files = files;
+exports.get_files = read_dir;
+exports.files = dir_contents;

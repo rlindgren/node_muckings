@@ -14,12 +14,6 @@ exports.handle_cla = function (args) {
 		args.path = args[2];
 		args.output_file = normalize(normalize(args.path) + "/css_selector_list.txt");
 	} else {
-		process.stdin.resume();
-		console.log('Please enter the directory or file path (relative to "env.HOME": ');
-		process.stdin.on('data', function (data) {
-			arg.path = process.env.HOME + "/" + data;
-			args.output_file = path.normalize(path.normalize(args.path) + '/css_selector_list.txt');
-		});
-		process.stdin.pause();
+		console.log('Please enter the directory or file path (relative to "env.HOME") as the search path.');
 	}
 }
