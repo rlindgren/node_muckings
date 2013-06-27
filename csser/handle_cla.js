@@ -14,6 +14,6 @@ exports.handle_cla = function (args) {
 		args.path = args[2];
 		args.output_file = normalize(normalize(args.path) + "/css_selector_list.txt");
 	} else {
-		console.log('Please enter the directory or file path (relative to "env.HOME") as the search path.');
+		throw new Error('Enter a directory or file path (relative to "env.HOME").');
 	}
 }

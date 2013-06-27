@@ -15,16 +15,14 @@ function verify_path (path) {
 
 function read_dir (path) {
 	fs.readdirSync(path).forEach(function (file) {
-		if (file.search(/^\./) === 0) { console.log('skipped ' + file) }
+		if (file.search(/^\./) === 0) { }
 		else if (! fs.statSync(path + file).isDirectory()) {
 			dir_contents.push(file);
-			console.log(red + file + reset + " added to dir_contents");
 		} else {
-			console.log('reading from internal directory.')
 			read_dir(path + file + '/');
 		}
 	});
 }
 
-exports.get_files = read_dir;
+exports.prep_files = read_dir;
 exports.files = dir_contents;
